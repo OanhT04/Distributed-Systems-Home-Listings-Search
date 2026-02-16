@@ -11,10 +11,11 @@ import socket
 # until it is manually stopped.
 # =============================================================================
 
-"""data.py
-└─ server socket (listen)
-    └─ conn socket (accept)
-"""
+# DATA LAYER:
+HOST = "127.0.0.1"
+PORT = 5001
+
+
 
 # =============================================================================
 # Ensure all responses end with END (required by application layer)
@@ -34,6 +35,7 @@ def runServer(host, port, listings):
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server.bind((host, port))
+    server.listen(5)
     print(f"Data Server listening on {host}:{port}")
     while True:
         conn, addr = server.accept()
@@ -70,10 +72,6 @@ def loadJSON(db_file: str) -> list[dict]:
         return []
 
 
-# =======================================================================================
-#implement commands for querying data: simple formatting other than just filtering results
-# =======================================================================================
-# (No separate RAW list function needed — listings already loaded once)
 
 
 # =======================================================================================
@@ -121,9 +119,8 @@ def processCommand(line: str, listings: list[dict]) -> str:
     parts = line.strip().split()  # split by whitespace
     if not parts:
         return formatError("malformed command")
-
     command = parts[0].upper()
-
+    
     if command == "RAW_LIST":  # command from application layer to get all listings without formatting
         if len(parts) != 1:
             return formatError("malformed command")
@@ -148,11 +145,10 @@ def processCommand(line: str, listings: list[dict]) -> str:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--host", default="127.0.0.1")
-    ap.add_argument("--port", type=int, required=True)
-    ap.add_argument("--db", default="listings.json")
+    ap.add_argument("--host", default=HOST, help ="IP address")
+    ap.add_argument("--port", type=int, default=PORT)
+    ap.add_argument("--db", default="listings.json", required = True)
     args = ap.parse_args()
-
     listings = loadJSON(args.db)
     runServer(args.host, args.port, listings)
 

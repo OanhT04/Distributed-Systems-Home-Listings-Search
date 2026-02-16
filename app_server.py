@@ -15,7 +15,7 @@ PORT = 5002
 DATA_HOST = "127.0.0.1"
 DATA_PORT = 5001
 
-# persistent data socket (created in main)
+# persistent data socket (created in main) so it can stay connected to data server
 dataSock = None
 
 #==============================================================================
@@ -30,7 +30,7 @@ logger.addHandler(_file_handler)
 logger.propagate = False
 
 # =============================================================================
-# Interceptor helpers
+# Interceptor helpers; just formatting the log
 # =============================================================================
 def logRequest(addr, cmd: str):
     logger.info(f"{addr} | REQUEST | {cmd}")
@@ -168,7 +168,7 @@ def responseFormatter(rows: List[Dict]) -> str:
 CACHE: Dict[str, str] = {}
 
 # =============================================================================
-# Handle one client connection (CONTINUOUS: multiple commands until QUIT)
+# Handle one client connection (multiple commands until QUIT and close only client connection)
 # so it does not require reconnection per command
 # =============================================================================
 def handleClient(conn: socket.socket):
@@ -238,8 +238,6 @@ def handleClient(conn: socket.socket):
                     CACHE[cache_key] = response
 
                 reply = ensureEnd(response)
-
-                # LOG REPLY (app server -> client)
                 logReply("APPLICATION->CLIENT", reply)
 
                 conn.sendall(reply.encode("utf-8"))

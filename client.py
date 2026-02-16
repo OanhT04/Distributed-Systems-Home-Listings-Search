@@ -7,7 +7,7 @@ import time
 #=============================================================================
 
 #=============================================================================
-#application layer client code
+#host and port for application layer
 #=============================================================================
 HOST, PORT = "127.0.0.1", 5002
 
@@ -51,14 +51,9 @@ def printQuery(resp: str):
         print(" | ".join(str(r.get(c, "")).ljust(widths[c]) for c in cols))
 
 
-#=============================================================================
-#data access layer only connects to application layer
-#=============================================================================
-#This connects to application layer, but having the connection outside the function 
-#makes it so one socket can be used for >1 command rather than having a new socket open and close for each request...
 
 #=============================================================================
-# (Removed duplicate run() that was closing the socket every time)
+#sending commands and receiving response from application
 #=============================================================================
 def run(sock, cmd):
     # send command to server
@@ -73,8 +68,6 @@ def run(sock, cmd):
             break
     print(f"\n> {cmd}")
     printQuery(data)
-
-
 
 
 
@@ -98,12 +91,13 @@ def listHomes(sock):
     end_time = time.perf_counter()
     total_ms = (end_time - start_time) * 1000
     print(f"\nTotal time: {total_ms:.2f} ms\n")
+    
 
-
+#============================================================================
 #I want to keep one socket open until user exits rather than create a socket
-#each request...
+#each request. Simpler user interface!
+#============================================================================
 def ClientMenu():
-    # CLIENT connects once to application layer server
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.connect((HOST, PORT))
