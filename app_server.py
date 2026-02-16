@@ -6,9 +6,9 @@ import logging
 # Oanh Tran 029661786
 
 # =============================================================================
-# APPLICATION LAYER:
+# APPLICATION LAYER: Default ports and IP
 # =============================================================================
-HOST = "127.0.0.1"
+HOST = "127.0.0.2"
 PORT = 5002
 
 # DATA LAYER:
@@ -125,6 +125,7 @@ def parseRows(resp: str) -> List[Dict]:
                 continue
             k, v = p.split("=", 1)
             item[k.strip()] = v.strip()
+            
         # convert numeric fields
         if "id" in item:
             try:
@@ -265,12 +266,18 @@ def main():
     parser = argparse.ArgumentParser(description="Application Layer Server")
     parser.add_argument("--host", default=HOST, help="Host to listen on")
     parser.add_argument("--port", type=int, default=PORT, help="Port to listen on")
+
+    # configurable Data Server endpoint (defaults preserved)
+    parser.add_argument("--data-host", default=DATA_HOST, help="Data server host to connect to")
+    parser.add_argument("--data-port", type=int, default=DATA_PORT, help="Data server port to connect to")
+
     args = parser.parse_args()
 
     dataSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     dataSock.settimeout(10)
-    dataSock.connect((DATA_HOST, DATA_PORT))
-    print(f"Connected to DATA server at {DATA_HOST}:{DATA_PORT}")
+
+    dataSock.connect((args.data_host, args.data_port))
+    print(f"Connected to DATA server at {args.data_host}:{args.data_port}")
 
     startTcp(args.host, args.port)
 
