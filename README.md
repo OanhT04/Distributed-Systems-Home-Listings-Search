@@ -12,13 +12,13 @@ python data_server.py --db listings.json
 ```
 uses default host and port
 
-3. Open a second Terminal and enter command:
+2. Open a second Terminal and enter command:
 ```bash
    python application_server.py 
 ```
 uses default host and port and connects to default host and port in data layer
 
-5. Open a third Terminal and run:
+3. Open a third Terminal and run:
 ```bash   
    python client.py
 ```
