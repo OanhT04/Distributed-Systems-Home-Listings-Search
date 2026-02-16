@@ -8,7 +8,7 @@ import logging
 # =============================================================================
 # APPLICATION LAYER: Default ports and IP
 # =============================================================================
-HOST = "127.0.0.2"
+HOST = "127.0.0.1"
 PORT = 5002
 
 # DATA LAYER:
@@ -274,7 +274,7 @@ def main():
     args = parser.parse_args()
 
     dataSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    dataSock.settimeout(10)
+    dataSock.settimeout(20)
 
     dataSock.connect((args.data_host, args.data_port))
     print(f"Connected to DATA server at {args.data_host}:{args.data_port}")
