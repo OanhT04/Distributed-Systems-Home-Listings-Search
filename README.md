@@ -5,13 +5,15 @@
 1. Open Terminal and enter the command:
    
 ```bash
-python data_server.py --port 5001 --db listings.json
+python data_server.py --db listings.json
 ```
+uses default host and port
 
 3. Open a second Terminal and enter command:
 ```bash
-   python application_server.py --port 5002
+   python application_server.py 
 ```
+uses default host and port
 
 5. Open a third Terminal and run:
 ```bash   
