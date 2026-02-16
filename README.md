@@ -1,4 +1,7 @@
 # Distributed-Systems-Home-Listings-Search
+This project is a three-tier distributed system built using Python sockets. It allows users to interact through a user interface to view all home listings and search listings by city and price. 
+
+
 
 ## Usage Instructions
 
@@ -24,25 +27,30 @@ Note: If you want to use a different data listing file; replace listings.json wi
 ## Implementation
 
 #### Client:
-The client consists of the user interface and it connects to the application layer only to send client requests and recieve responses. 
-- Uses a persistent TCP connection and communicates directly with the application layer; using sockets to send "LIST", "SEARCH" and "QUIT" COMMANDS to application layer. 
-- It is a menu driven interface for users to view all home listings or search home listings or quit the application.
-- The client does not communicate directly with the Data Server. All requests are routed through the Application Layer.
-- Results are printed in tabular format
-- calculates time for each search to complete in ms
+- The client consists of the user interface and it connects to the application layer only to send client requests and recieve responses. 
+- Provides interactive menu interface
+- Sends LIST, SEARCH, and QUIT commands
+- Formats results into a clean table
+- Measures response time for performance tracking
+- Maintains a persistent socket connection
 
 #### Application Layer
-The Application Server acts as the middle-tier server between the Client and the Data Server.
-- It accepts a persistent TCP connection from the client and continuously processes multiple commands during the same session until the client sends QUIT.
--  For each request, the Application Layer validates and formats the client command (formatClientRequest), checks a local in-memory cache for repeated LIST or SEARCH queries, and forwards cache-misses to the Data Server.
--  After receiving the Data Server response, it parses the returned rows, applies sorting/processing logic, formats the final application response, appends the END terminator, and sends it back to the client.
-- enforces the protocol, improves performance with caching, and isolates the client from direct data access.
+- The Application Server acts as the middle-tier server between the Client and the Data Server.
+- Acts as middleware between Client and Data Server
+- Converts client commands:
+-    LIST → RAW_LIST
+-    SEARCH <city> <max_price> → RAW_SEARCH <city> <max_price>
+- Sorts results: Price ascending, Bedrooms descending
+- Implements caching for repeated queries
+- Logs all requests and responses (app_server.log)
+- Handles errors and timeouts
   
 #### Data Layer
-Data Server (data access layer) responsible for serving home listing data to the Application Layer.
-- It listens for incoming TCP connections from the Application Layer and processes requests such as LIST and SEARCH. For LIST, it returns all available home records; for SEARCH, it filters records based on the provided city and maximum price.
--  returns results using a simple text-based response protocol and terminates each response with END so the Application Layer knows when the message is complete.
-- does not interact with the client directly and focuses only on retrieving/filtering data and returning raw results (or errors) back to the Application Layer.
+- Loads home data from JSON file
+- Processes:
+-    RAW_LIST and RAW_SEARCH
+- Filters listings based on city and max price
+- Sends formatted responses back to Application Layerication Layer.
 
 #### Error Handling Implemented at Data Layer, Application Layer and Client Layer
 
