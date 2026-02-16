@@ -3,7 +3,7 @@ This project is a three-tier distributed system built using Python sockets. It a
 
 
 
-## Usage Instructions: Using default IP and Ports!
+## Usage Instructions: Using default Host (<127.0.0.1>) and Ports!
 
 1. Open Terminal and enter the command:
    
