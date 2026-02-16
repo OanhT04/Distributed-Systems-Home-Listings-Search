@@ -1,6 +1,7 @@
 # Distributed-Systems-Home-Listings-Search
-This project is a three-tier distributed system built using Python sockets. It allows users to interact through a user interface to view all home listings and search listings by city and price. 
+This is a simple three-tier system built using Python sockets. It allows users to interact through a user interface to view all home listings and search listings by city and price. 
 
+<img width="2079" height="1645" alt="image" src="https://github.com/user-attachments/assets/0d43d566-574d-452e-915d-138399b6573c" />
 
 
 ## Usage Instructions: Using default Host (<127.0.0.1>) and Ports!
@@ -32,7 +33,7 @@ Note: If you want to use a different data listing file; replace listings.json wi
    python app_server.py --host <127.0.0.1>  --port <APP_PORT>  --data-host <127.0.0.1> --data-port <DATA_PORT>
    python client.py --127.0.0.1 --port <APP_PORT>
 ```
-use 127.0.0.1 as host for all which is also default... 
+Must use 127.0.0.1 as host for all which is also default... 
 
 #### example:
 
