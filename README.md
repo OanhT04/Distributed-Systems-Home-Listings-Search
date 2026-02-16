@@ -1,7 +1,7 @@
 # Distributed-Systems-Home-Listings-Search
 This is a simple three-tier system built using Python sockets. It allows users to interact through a user interface to view all home listings and search listings by city and price. 
 
-<img width="1830" height="1424" alt="image" src="https://github.com/user-attachments/assets/262e8039-7a47-42e6-8813-ca0026c22a40" />
+<img width="1830" height="1424" alt="image" src="https://github.com/user-attachments/assets/f221cb84-c8d1-42b1-9ae3-60a281cc56c1" />
 
 
 ## Usage Instructions: Using default Host (<127.0.0.1>) and Ports!
