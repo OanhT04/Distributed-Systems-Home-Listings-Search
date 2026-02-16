@@ -32,9 +32,9 @@ Note: If you want to use a different data listing file; replace listings.json wi
    python app_server.py --host <127.0.0.1>  --port <APP_PORT>  --data-host <127.0.0.1> --data-port <DATA_PORT>
    python client.py --127.0.0.1 --port <APP_PORT>
 ```
-use 127.0.0.1 as host for all... 
+use 127.0.0.1 as host for all which is also default... 
 
-####example:
+#### example:
 
          # Start Data Server
          python data_server.py --host 127.0.0.1 --port 7001 --db listings.json
