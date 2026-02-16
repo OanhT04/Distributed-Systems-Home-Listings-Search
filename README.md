@@ -28,12 +28,11 @@ Note: If you want to use a different data listing file; replace listings.json wi
 
 ## Configuration Options - All have defaults however can be customized with command line arguments
 ```bash   
-   python data_server.py --host <DATA_IP> --port <DATA_PORT> --db <JSON_FILE>
-   python app_server.py --host <APP_IP> --port <APP_PORT> \
-                     --data-host <DATA_IP> --data-port <DATA_PORT>
-   python client.py --host <APP_IP> --port <APP_PORT>
+   python data_server.py --host <127.0.0.1> --port <DATA_PORT> --db <JSON_FILE>
+   python app_server.py --host <127.0.0.1>  --port <APP_PORT>  --data-host <127.0.0.1> --data-port <DATA_PORT>
+   python client.py --127.0.0.1 --port <APP_PORT>
 ```
-
+use 127.0.0.1 as host for all... 
 
 ## Implementation
 
