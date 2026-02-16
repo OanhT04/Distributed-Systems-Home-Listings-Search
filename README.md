@@ -93,7 +93,7 @@ Must use 127.0.0.1 as host for all which is also default...
 
 
 ### All Listings Retrieving from Cache Memory 
-#### The first request from client to query all home listings took 16.60 ms; after the query was saved in a cache, and upon requesting a list of all listings, it took 5.60 ms...
+#### The first request from client to query all home listings took 16.60 ms; the search was saved in a cache. Upon requesting a list of all listings again, the completed request took 5.60 ms!
 D<img width="1656" height="1059" alt="image" src="https://github.com/user-attachments/assets/60adf4f6-0096-4e61-b4de-5a5b75b507ac" /> <img width="1324" height="938" alt="image" src="https://github.com/user-attachments/assets/63f5a7d5-d98f-4b9b-a809-c76abdf07818" />
 
 ### Example Log 
