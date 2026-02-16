@@ -3,7 +3,7 @@ This project is a three-tier distributed system built using Python sockets. It a
 
 
 
-## Usage Instructions
+## Usage Instructions for default IP and Ports
 
 1. Open Terminal and enter the command:
    
@@ -16,13 +16,23 @@ uses default host and port
 ```bash
    python application_server.py 
 ```
-uses default host and port
+uses default host and port and connects to default host and port in data layer
 
 5. Open a third Terminal and run:
 ```bash   
    python client.py
 ```
+connects to default application host and port 
+
 Note: If you want to use a different data listing file; replace listings.json with custom json file. 
+
+## Configuration Options - All have defaults however can be customized with command line arguments
+```bash   
+   python data_server.py --host <data IP> --port <data PORT> --db <JSON_FILE>
+   python app_server.py --host <app IP> --port <app PORT> --data-host <data IP> --data-port <data PORT>
+   python client.py --host <app IP> --port <app PORT>
+```
+
 
 ## Implementation
 
