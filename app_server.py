@@ -237,7 +237,6 @@ def handleClient(conn: socket.socket):
                 # cache valid commands
                 if cmd.upper().startswith(("LIST", "SEARCH")):
                     CACHE[cache_key] = response
-
                 reply = ensureEnd(response)
                 logReply("APPLICATION->CLIENT", reply)
 
@@ -267,7 +266,7 @@ def main():
     parser.add_argument("--host", default=HOST, help="Host to listen on")
     parser.add_argument("--port", type=int, default=PORT, help="Port to listen on")
 
-    # configurable Data Server endpoint (defaults preserved)
+    # configurable Data Server endpoint (defaults)
     parser.add_argument("--data-host", default=DATA_HOST, help="Data server host to connect to")
     parser.add_argument("--data-port", type=int, default=DATA_PORT, help="Data server port to connect to")
 

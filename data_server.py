@@ -6,9 +6,7 @@ import socket
 #Data layer contains the data that a client wants to manipulate through the application components
 # =============================================================================
 # Start TCP server
-#The socket will wait for a connection from the application layer, and once a connection is established, 
-# it will receive data from the client, process it, and send back a response. The server will continue to listen for incoming connections
-# until it is manually stopped.
+#The socket will wait for a connection from the application layer
 # =============================================================================
 
 # DATA LAYER:
