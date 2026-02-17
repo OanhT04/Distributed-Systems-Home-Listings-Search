@@ -3,6 +3,8 @@ This is a simple three-tier system built using Python sockets. It allows users t
 
 <img width="1830" height="1424" alt="image" src="https://github.com/user-attachments/assets/f221cb84-c8d1-42b1-9ae3-60a281cc56c1" />
 
+<img width="2334" height="1366" alt="image" src="https://github.com/user-attachments/assets/0e74817c-1ced-45f6-84eb-e97e83f01c85" />
+
 
 ## Usage Instructions: Using default Host (<127.0.0.1>) and Ports!
 
